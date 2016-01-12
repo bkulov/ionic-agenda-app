@@ -1,0 +1,30 @@
+<ion-view title="Lectures">
+  <ion-content class="padding">
+    <ion-list>
+      <center class="padding">10 May</center>
+      <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in lecturesFirstDay" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
+        <i class="icon ion-plus-circled"></i>
+
+        <p>{{lecture.startTime.toLocaleTimeString()}}</p>
+
+        <h2>{{lecture.title}}</h2>
+        <p>{{lecture.lector}}</p>
+
+        <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
+      </ion-item>
+
+      <center class="padding">11 May</center>
+      <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in lecturesSecondDay" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
+        <i class="icon ion-plus-circled"></i>
+
+        <p>{{lecture.startTime.toLocaleTimeString()}}</p>
+
+        <h2>{{lecture.title}}</h2>
+        <p>{{lecture.lector}}</p>
+
+        <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

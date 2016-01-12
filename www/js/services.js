@@ -1,47 +1,68 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
-
+.factory('Lectures', function() {
   // Some fake testing data
-  var chats = [{
+  var lectures = [{
     id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
+    startTime: new Date(2016, 05, 10, 9),
+    endTime: new Date(2016, 05, 10, 10),
+    title: 'How to do what when and why',
+    lector: 'Gerrard Buttler',
+    difficulty: 'SOFT SKILLS'
   }, {
     id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
+    startTime: new Date(2016, 05, 10, 10),
+    endTime: new Date(2016, 05, 10, 12),
+    title: 'How not to do what the other guy before me told you to do',
+    lector: 'Bradley Pitts',
+    difficulty: 'SOFT SKILLS'
   }, {
     id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
+    startTime: new Date(2016, 05, 10, 12),
+    endTime: new Date(2016, 05, 10, 14),
+    title: 'Lunch',
+    lector: '',
+    difficulty: 'FOOD & ENTERTAINMENT'
   }, {
     id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
+    startTime: new Date(2016, 05, 10, 14),
+    endTime: new Date(2016, 05, 10, 15),
+    title: 'How to do what when and why',
+    lector: 'Gerrard Buttler',
+    difficulty: 'SOFT SKILLS'
   }, {
     id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
+    startTime: new Date(2016, 05, 10, 17),
+    endTime: new Date(2016, 05, 10, 19),
+    title: 'How not to do what the other guy before me told you to do',
+    lector: 'Bradley Pitts',
+    difficulty: 'DEVOPS'
+  }, {
+    id: 5,
+    startTime: new Date(2016, 05, 11, 10),
+    endTime: new Date(2016, 05, 11, 12),
+    title: 'How not to do what the other guy before me told you to do',
+    lector: 'Bradley Pitts',
+    difficulty: 'DEVOPS'
   }];
 
   return {
     all: function() {
-      return chats;
+      return lectures;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    allForDay: function(date) {
+        var lecturesForDay = [];
+        for (var i = 0; i < lectures.length; i++) {
+            if (lectures[i].startTime.getDate() === date) {
+                lecturesForDay.push(lectures[i]);
+            }
+        }
+        return lecturesForDay;
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function(lectureId) {
+      for (var i = 0; i < lectures.length; i++) {
+        if (lectures[i].id === parseInt(lectureId)) {
+          return lectures[i];
         }
       }
       return null;

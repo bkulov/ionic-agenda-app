@@ -1,1 +1,7 @@
-/* Empty. Add your own CSS if you like */
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    background: #BCFE90;
+}
+
+.inline-div {
+    display:inline-block;
+}
