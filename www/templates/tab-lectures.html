@@ -1,14 +1,18 @@
 <ion-view title="Lectures">
   <ion-content class="padding">
     <ion-list>
+
+      <!--TODO: make the list dynamically loaded using the structured data from the controller-->
+
       <center class="padding">10 May</center>
       <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in lecturesFirstDay" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
-        <i class="icon ion-plus-circled"></i>
+        
+        <i class="icon {{ lecture.scheduled ? 'ion-minus-circled' : 'ion-plus-circled' }}"></i>
 
         <p>{{lecture.startTime.toLocaleTimeString()}}</p>
 
         <h2>{{lecture.title}}</h2>
-        <p>{{lecture.lector}}</p>
+        <p>{{getLectorName(lecture.lectorId)}}</p>
 
         <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
       </ion-item>
@@ -20,7 +24,7 @@
         <p>{{lecture.startTime.toLocaleTimeString()}}</p>
 
         <h2>{{lecture.title}}</h2>
-        <p>{{lecture.lector}}</p>
+        <p>{{getLectorName(lecture.lectorId)}}</p>
 
         <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
       </ion-item>

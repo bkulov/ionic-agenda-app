@@ -29,18 +29,43 @@ angular.module('starter.controllers', [])
 
 .controller('AgendaCtrl', function ($scope) { })
 
-.controller('LecturesCtrl', function ($scope, Lectures) {
+.controller('LecturesCtrl', function ($scope, Lectures, Speakers) {
     $scope.lectures = Lectures.all();
 
-    $scope.days = [];
-    for (var i = 0; i < $scope.lectures.length; i++) {
-        if ($scope.days.indexOf) {
+    $scope.speakers = Speakers;
 
-        }
-    }
+    $scope.getLectorName = function (lectorId) {
+        var lector = Speakers.get(lectorId);
+
+        if (lector)
+            return lector.name;
+
+        return '';
+    };
+
+    //$scope.days = [];
+    //for (var i = 0; i < $scope.lectures.length; i++) {
+    //    if ($scope.days.indexOf) {
+
+    //    }
+    //}
 
     $scope.lecturesFirstDay = Lectures.allForDay(new Date(2016, 05, 10).getDate());
     $scope.lecturesSecondDay = Lectures.allForDay(new Date(2016, 05, 11).getDate());
+})
+
+.controller('LectureDetailCtrl', function ($scope, $stateParams, Lectures, Speakers) {
+    $scope.lecture = Lectures.get($stateParams.lectureId);
+    $scope.speakers = Speakers;
+
+    $scope.getLectorName = function (lectorId) {
+        var lector = Speakers.get(lectorId);
+
+        if (lector)
+            return lector.name;
+
+        return '';
+    };
 })
 
 .controller('SpeakersCtrl', function ($scope) { })

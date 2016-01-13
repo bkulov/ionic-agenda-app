@@ -60,6 +60,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
   })
 
+  .state('tab.lecture-detail', {
+      url: '/lectures/:lectureId',
+      views: {
+          'tab-lectures': {
+              templateUrl: 'templates/lecture-detail.html',
+              controller: 'LectureDetailCtrl'
+          }
+      }
+  })
+
   .state('tab.speakers', {
       url: '/speakers',
       views: {
@@ -79,6 +89,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           }
       }
   })
+
+
 
   .state('tab.dash', {
     url: '/dash',
