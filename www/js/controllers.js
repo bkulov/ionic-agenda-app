@@ -27,7 +27,17 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('AgendaCtrl', function ($scope) { })
+.controller('AgendaCtrl', function ($scope, Lectures) {
+    $scope.dates = Lectures.getDates();
+
+    $scope.toLocaleDateString = Lectures.toLocaleDateString;
+
+    $scope.getScheduledLecturesByDate = function (date) {
+        var lectures = Lectures.getAllByDay(date);
+
+        return lectures.filter(function (l) { return l.scheduled; });
+    }
+})
 
 .controller('LecturesCtrl', function ($scope, Lectures, Speakers) {
     $scope.lectures = Lectures.all();
@@ -43,15 +53,10 @@ angular.module('starter.controllers', [])
         return '';
     };
 
-    //$scope.days = [];
-    //for (var i = 0; i < $scope.lectures.length; i++) {
-    //    if ($scope.days.indexOf) {
+    // TODO: refactor this using the dates from the service
 
-    //    }
-    //}
-
-    $scope.lecturesFirstDay = Lectures.allForDay(new Date(2016, 05, 10).getDate());
-    $scope.lecturesSecondDay = Lectures.allForDay(new Date(2016, 05, 11).getDate());
+    $scope.lecturesFirstDay = Lectures.getAllByDay(new Date(2016, 04, 10).getDate());
+    $scope.lecturesSecondDay = Lectures.getAllByDay(new Date(2016, 04, 11).getDate());
 })
 
 .controller('LectureDetailCtrl', function ($scope, $stateParams, Lectures, Speakers) {

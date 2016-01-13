@@ -1,5 +1,32 @@
-<ion-view title="Agenda">
+<ion-view view-title="Agenda">
   <ion-content class="padding">
-    <h3>Text</h3>
+    
+    <div align="center">
+      <h3>Event Name</h3>
+    </div>
+
+    <ion-list>
+
+      <ion-item class="item-borderless" ng-repeat="date in dates">
+        <h4 align="center">{{toLocaleDateString(date)}}</h4>
+
+        <ion-list>
+          <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in getScheduledLecturesByDate(date)" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
+
+              <i class="icon {{ lecture.scheduled ? 'ion-minus-circled' : 'ion-plus-circled' }}"></i>
+
+              <p>{{lecture.startTime.toLocaleTimeString()}}</p>
+
+              <h2>{{lecture.title}}</h2>
+              <p>{{getLectorName(lecture.lectorId)}}</p>
+
+              <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
+          </ion-item>
+        </ion-list>
+
+      </ion-item>
+
+    </ion-list>
+
   </ion-content>
 </ion-view>
