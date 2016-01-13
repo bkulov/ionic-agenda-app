@@ -68,6 +68,14 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('SpeakersCtrl', function ($scope) { })
+.controller('SpeakersCtrl', function ($scope, Speakers) {
+    $scope.speakers = Speakers.all();
+})
+
+.controller('SpeakerDetailCtrl', function ($scope, $stateParams, Lectures, Speakers) {
+    $scope.speaker = Speakers.get($stateParams.speakerId);
+
+    $scope.lectures = Lectures.allBySpeaker($stateParams.speakerId);
+})
 
 .controller('FloorPlanCtrl', function ($scope) { });

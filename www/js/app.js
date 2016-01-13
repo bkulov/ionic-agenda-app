@@ -80,6 +80,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
   })
 
+  .state('tab.speaker-detail', {
+      url: '/speakers/:speakerId',
+      views: {
+          'tab-speakers': {
+              templateUrl: 'templates/speaker-detail.html',
+              controller: 'SpeakerDetailCtrl'
+          }
+      }
+  })
+
   .state('tab.floorplan', {
       url: '/floorplan',
       views: {
