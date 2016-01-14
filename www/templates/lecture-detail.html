@@ -25,11 +25,11 @@
 
     <div class="padding" align="center">
       <p align="center" style="color:gray">Rate the lecture</p>
-      <ion-button class="button button-clear icon {{lecture.rating > 0 ? 'ion-ios-star' : 'ion-ios-star-outline'}}"></ion-button>
-      <ion-button class="button button-clear icon {{lecture.rating > 1 ? 'ion-ios-star' : 'ion-ios-star-outline'}}"></ion-button>
-      <ion-button class="button button-clear icon {{lecture.rating > 2 ? 'ion-ios-star' : 'ion-ios-star-outline'}}"></ion-button>
-      <ion-button class="button button-clear icon {{lecture.rating > 3 ? 'ion-ios-star' : 'ion-ios-star-outline'}}"></ion-button>
-      <ion-button class="button button-clear icon {{lecture.rating > 4 ? 'ion-ios-star' : 'ion-ios-star-outline'}}"></ion-button>
+      <ion-button class="button button-clear icon {{lecture.rating > 0 ? 'ion-ios-star' : 'ion-ios-star-outline'}}" ng-click="setRating(1)"></ion-button>
+      <ion-button class="button button-clear icon {{lecture.rating > 1 ? 'ion-ios-star' : 'ion-ios-star-outline'}}" ng-click="setRating(2)"></ion-button>
+      <ion-button class="button button-clear icon {{lecture.rating > 2 ? 'ion-ios-star' : 'ion-ios-star-outline'}}" ng-click="setRating(3)"></ion-button>
+      <ion-button class="button button-clear icon {{lecture.rating > 3 ? 'ion-ios-star' : 'ion-ios-star-outline'}}" ng-click="setRating(4)"></ion-button>
+      <ion-button class="button button-clear icon {{lecture.rating > 4 ? 'ion-ios-star' : 'ion-ios-star-outline'}}" ng-click="setRating(5)"></ion-button>
     </div>
 
     <div class="padding">

@@ -54,6 +54,10 @@ angular.module('starter.controllers', [])
     $scope.setSchedule = function (sheduled) {
         Lectures.setScheduled($scope.lecture, sheduled);
     }
+
+    $scope.setRating = function (rating) {
+        $scope.lecture.rating = rating;
+    }
 })
 
 .controller('SpeakersCtrl', function ($scope, Speakers) {
