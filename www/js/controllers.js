@@ -1,5 +1,11 @@
 angular.module('starter.controllers', [])
 
+.controller('TabsCtrl', function ($scope, $ionicHistory) {
+    $scope.clearHistory = function () {
+        $ionicHistory.clearHistory();
+    }
+})
+
 .controller('AgendaCtrl', function ($scope, Lectures) {
     $scope.dates = Lectures.getDates();
 
