@@ -3,7 +3,8 @@
 
     <ion-list>
 
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="speaker in speakers" type="item-text-wrap" href="#/tab/speakers/{{speaker.id}}">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="speaker in speakers" type="item-text-wrap"
+                ui-sref="tab.speaker-detail({speakerId: speaker.id})">
 
         <img ng-src="{{speaker.photo}}">
         <h2>{{speaker.name}}</h2>

@@ -161,13 +161,8 @@ angular.module('starter.services', [])
     }
 
     result.setScheduled = function (lecture, scheduled) {
-
-        //alert(scheduled);
-
         if (lecture)
         {
-           // alert(lecture.title);
-
             lecture.scheduled = scheduled;
         }
     }

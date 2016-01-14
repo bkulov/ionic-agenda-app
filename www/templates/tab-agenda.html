@@ -11,9 +11,10 @@
         <h4 align="center">{{toLocaleDateString(date)}}</h4>
 
         <ion-list>
-          <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in getScheduledLecturesByDate(date)" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
+          <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in getScheduledLecturesByDate(date)" type="item-text-wrap"
+                    ui-sref="tab.lecture-detail({lectureId: lecture.id})">
               <ion-button class="icon {{lecture.scheduled ? 'ion-minus-circled' : 'ion-plus-circled'}}" style="color:red"
-                          ng-click="setLectureSchedule(lecture, !lecture.scheduled)">
+                          ng-click="setLectureSchedule(lecture, !lecture.scheduled); $event.stopPropagation();">
               </ion-button>
 
               <p>{{lecture.startTime.toLocaleTimeString()}}</p>

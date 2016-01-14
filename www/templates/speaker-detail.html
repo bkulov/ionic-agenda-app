@@ -19,10 +19,9 @@
     <div class="padding">
       <center class="padding">Lectures</center>
       <ion-list>
-        <!--<ion-item class="item-remove-animate" ng-repeat="lecture in lectures" type="item-text-wrap" href="#/tab/speakers/{{speaker.id}}">-->
         <ion-item class="item-remove-animate item-borderless" ng-repeat="lecture in lectures" type="item-text-wrap">
           <p>{{lecture.startTime.toLocaleDateString()}} {{lecture.startTime.toLocaleTimeString()}}</p>
-          <a href="#/tab/lectures/{{lecture.id}}">{{lecture.title}}</a>
+          <a ui-sref="tab.lecture-detail({lectureId: lecture.id})">{{lecture.title}}</a>
         </ion-item>
       </ion-list>
     </div>

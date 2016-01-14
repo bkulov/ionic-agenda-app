@@ -7,16 +7,11 @@
     </div>
 
     <div class="padding">
-      <!--<a ui-sref="tab.speaker-detail({ speakerId: lecture.lectorId })">
-        <h4 align="center">{{getLectorName(lecture.lectorId)}}</h4>
-      </a>-->
-
       <div align="center">
         <ion-button class="button button-clear" ui-sref="tab.speaker-detail({ speakerId: lecture.lectorId })">
           <h4>{{getLectorName(lecture.lectorId)}}</h4>
         </ion-button>
       </div>
-
 
       <p align="center">{{toLocaleDateString(lecture.startTime)}} {{lecture.startTime.toLocaleTimeString()}} - {{lecture.endTime.toLocaleTimeString()}}</p>
     </div>
