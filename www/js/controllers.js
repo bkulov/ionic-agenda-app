@@ -33,16 +33,25 @@ angular.module('starter.controllers', [])
     $scope.toLocaleDateString = Lectures.toLocaleDateString;
 
     $scope.getScheduledLecturesByDate = function (date) {
-        var lectures = Lectures.getAllByDay(date);
+        var lectures = Lectures.getAllByDate(date);
 
         return lectures.filter(function (l) { return l.scheduled; });
+    }
+
+    $scope.setLectureSchedule = function (lecture, sheduled) {
+        Lectures.setScheduled(lecture, sheduled);
+    }
+
+    $scope.navigateToLectures = function () {
+        //$state.go('tab.lectures', {}, {location:'replace'});
+        $state.go('tab.floorplan');
     }
 })
 
 .controller('LecturesCtrl', function ($scope, Lectures, Speakers) {
-    $scope.lectures = Lectures.all();
+    $scope.dates = Lectures.getDates();
 
-    $scope.speakers = Speakers;
+    $scope.toLocaleDateString = Lectures.toLocaleDateString;
 
     $scope.getLectorName = function (lectorId) {
         var lector = Speakers.get(lectorId);
@@ -51,17 +60,19 @@ angular.module('starter.controllers', [])
             return lector.name;
 
         return '';
-    };
+    }
 
-    // TODO: refactor this using the dates from the service
+    $scope.getLecturesByDate = Lectures.getAllByDate;
 
-    $scope.lecturesFirstDay = Lectures.getAllByDay(new Date(2016, 04, 10).getDate());
-    $scope.lecturesSecondDay = Lectures.getAllByDay(new Date(2016, 04, 11).getDate());
+    $scope.setLectureSchedule = function (lecture, sheduled) {
+        Lectures.setScheduled(lecture, sheduled);
+    }
 })
 
 .controller('LectureDetailCtrl', function ($scope, $stateParams, Lectures, Speakers) {
     $scope.lecture = Lectures.get($stateParams.lectureId);
-    $scope.speakers = Speakers;
+
+    $scope.toLocaleDateString = Lectures.toLocaleDateString;
 
     $scope.getLectorName = function (lectorId) {
         var lector = Speakers.get(lectorId);
@@ -70,7 +81,11 @@ angular.module('starter.controllers', [])
             return lector.name;
 
         return '';
-    };
+    }
+
+    $scope.setSchedule = function (sheduled) {
+        Lectures.setScheduled($scope.lecture, sheduled);
+    }
 })
 
 .controller('SpeakersCtrl', function ($scope, Speakers) {

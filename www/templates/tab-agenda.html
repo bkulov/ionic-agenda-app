@@ -12,8 +12,9 @@
 
         <ion-list>
           <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in getScheduledLecturesByDate(date)" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
-
-              <i class="icon {{ lecture.scheduled ? 'ion-minus-circled' : 'ion-plus-circled' }}"></i>
+              <ion-button class="icon {{lecture.scheduled ? 'ion-minus-circled' : 'ion-plus-circled'}}" style="color:red"
+                          ng-click="setLectureSchedule(lecture, !lecture.scheduled)">
+              </ion-button>
 
               <p>{{lecture.startTime.toLocaleTimeString()}}</p>
 
@@ -27,6 +28,12 @@
       </ion-item>
 
     </ion-list>
+
+    <div class="padding" align="center">
+      <ion-button class="button icon-left button-clear ion-plus" style="color: lightgreen" ui-sref="tab.lectures">
+        Add lectures
+      </ion-button>
+    </div>
 
   </ion-content>
 </ion-view>

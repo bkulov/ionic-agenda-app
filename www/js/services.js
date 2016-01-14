@@ -131,7 +131,7 @@ angular.module('starter.services', [])
         return dates;
     }
 
-    result.getAllByDay = function (date) {
+    result.getAllByDate = function (date) {
         var lecturesForDay = [];
         for (var i = 0; i < lectures.length; i++) {
             if (dateEquals(lectures[i].startTime, date)) {
@@ -160,31 +160,17 @@ angular.module('starter.services', [])
         return lecturesBySpeaker;
     }
 
+    result.setScheduled = function (lecture, scheduled) {
 
-    //result.selected = [];
+        //alert(scheduled);
 
-    //result.add = function (lecture) {
-    //    if (result.selected.length > 0) {
-    //        // add items ordered by startTime
-    //        for (var i = 0; i < result.selected.length; i++) {
-    //            if (result.selected[i].startTime > lecture.startTime) {
-    //                result.selected.splice(i, 0, lecture);
-    //                return;
-    //            }
-    //        }
-    //    }
+        if (lecture)
+        {
+           // alert(lecture.title);
 
-    //    result.selected.push(lecture);
-    //}
-
-    //result.remove = function (lecture) {
-    //    for (var i = 0; i < result.selected.length; i++) {
-    //        if (result.selected[i] === lecture) {
-    //            result.selected.splice(i, 1);
-    //            return;
-    //        }
-    //    }
-    //}
+            lecture.scheduled = scheduled;
+        }
+    }
 
     return result;
 });

@@ -2,31 +2,25 @@
   <ion-content class="padding">
     <ion-list>
 
-      <!--TODO: make the list dynamically loaded using the structured data from the controller-->
+      <ion-item class="item-borderless" ng-repeat="date in dates">
+        <h4 align="center">{{toLocaleDateString(date)}}</h4>
 
-      <center class="padding">10 May</center>
-      <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in lecturesFirstDay" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
-        
-        <i class="icon {{ lecture.scheduled ? 'ion-minus-circled' : 'ion-plus-circled' }}"></i>
+        <ion-list>
+          <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in getLecturesByDate(date)" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
+            <!--<i class="icon ion-plus-circled"></i>-->
+            <ion-button class="icon {{lecture.scheduled ? 'ion-minus-circled' : 'ion-plus-circled'}}" style="color:red"
+                        ng-click="setLectureSchedule(lecture, !lecture.scheduled)">
+            </ion-button>
 
-        <p>{{lecture.startTime.toLocaleTimeString()}}</p>
+            <p>{{lecture.startTime.toLocaleTimeString()}}</p>
 
-        <h2>{{lecture.title}}</h2>
-        <p>{{getLectorName(lecture.lectorId)}}</p>
+            <h2>{{lecture.title}}</h2>
+            <p>{{getLectorName(lecture.lectorId)}}</p>
 
-        <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
-      </ion-item>
+            <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
+          </ion-item>
+        </ion-list>
 
-      <center class="padding">11 May</center>
-      <ion-item class="item-remove-animate item-icon-left" ng-repeat="lecture in lecturesSecondDay" type="item-text-wrap" href="#/tab/lectures/{{lecture.id}}">
-        <i class="icon ion-plus-circled"></i>
-
-        <p>{{lecture.startTime.toLocaleTimeString()}}</p>
-
-        <h2>{{lecture.title}}</h2>
-        <p>{{getLectorName(lecture.lectorId)}}</p>
-
-        <p style="color:bisque;float:right">{{lecture.difficulty}}</p>
       </ion-item>
 
     </ion-list>
