@@ -33,7 +33,7 @@ angular.module('starter.services', [])
     };
 })
 
-.factory('Lectures', function() {
+.factory('Lectures', function () {
     // Some fake testing data
     var lectures = [{
         id: 0,
@@ -118,8 +118,8 @@ angular.module('starter.services', [])
     result.getDates = function () {
         var dates = [];
 
-        var isDatePresentInArray = function(date) {
-            return dates.filter(function(d) { return dateEquals(d, date); }).length > 0;
+        var isDatePresentInArray = function (date) {
+            return dates.filter(function (d) { return dateEquals(d, date); }).length > 0;
         }
 
         for (lecture of lectures) {
@@ -141,7 +141,7 @@ angular.module('starter.services', [])
         return lecturesForDay;
     }
 
-    result.get = function(lectureId) {
+    result.get = function (lectureId) {
         for (var i = 0; i < lectures.length; i++) {
             if (lectures[i].id === parseInt(lectureId)) {
                 return lectures[i];
@@ -161,11 +161,37 @@ angular.module('starter.services', [])
     }
 
     result.setScheduled = function (lecture, scheduled) {
-        if (lecture)
-        {
+        if (lecture) {
             lecture.scheduled = scheduled;
         }
     }
 
     return result;
+})
+
+.service('LoginService', function ($q) {
+    return {
+        loginOffice365: function (name, password) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+
+            if (name === 'user' && password === 'secret') {
+                deferred.resolve('Welcome ' + name + '!');
+            } else {
+                deferred.reject('Wrong credentials.');
+            }
+
+            promise.success = function (fn) {
+                promise.then(fn);
+                return promise;
+            }
+
+            promise.error = function (fn) {
+                promise.then(null, fn);
+                return promise;
+            }
+
+            return promise;
+        }
+    }
 });

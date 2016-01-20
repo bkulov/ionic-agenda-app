@@ -76,4 +76,23 @@ angular.module('starter.controllers', [])
     $scope.lectures = Lectures.allBySpeaker($stateParams.speakerId);
 })
 
-.controller('FloorPlanCtrl', function ($scope) { });
+.controller('FloorPlanCtrl', function ($scope) { })
+
+.controller('LoginCtrl', function ($scope, LoginService, $ionicPopup, $state) {
+    $scope.user = {};
+
+    $scope.login = function () {
+        console.log('Login user: ' + $scope.user.username + ', pass: ' + $scope.user.password);
+
+        LoginService.loginOffice365($scope.user.username, $scope.user.password)
+        .success(function (data) {
+            $state.go('tab.agenda');
+        })
+        .error(function (data) {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Login failed!',
+                template: 'Please check your credentials!'
+            });
+        });
+    }
+});
