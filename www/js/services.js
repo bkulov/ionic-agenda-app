@@ -169,29 +169,42 @@ angular.module('starter.services', [])
     return result;
 })
 
-.service('LoginService', function ($q) {
+.service('LoginService', function ($q, $window/*, $http*/) {
+    var office365LoginData = {};
+
     return {
-        loginOffice365: function (name, password) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
+        loginOffice365: function (/*name, password*/) {
+            //var deferred = $q.defer();
+            //var promise = deferred.promise;
 
-            if (name === 'user' && password === 'secret') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
+            $window.location.href = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=a7f22932-a0de-402e-8710-bdc7691d0207&redirect_uri=http%3A%2F%2Flocalhost:23655&response_type=code&scope=https%3A%2F%2Foutlook.office.com%2Fmail.read';
 
-            promise.success = function (fn) {
-                promise.then(fn);
-                return promise;
-            }
+            //if (name === 'user' && password === 'secret') {
+            //    deferred.resolve('Welcome ' + name + '!');
+            //} else {
+            //    deferred.reject('Wrong credentials.');
+            //}
 
-            promise.error = function (fn) {
-                promise.then(null, fn);
-                return promise;
-            }
+            //promise.success = function (fn) {
+            //    promise.then(fn);
+            //    return promise;
+            //}
 
-            return promise;
+            //promise.error = function (fn) {
+            //    promise.then(null, fn);
+            //    return promise;
+            //}
+
+            //return promise;
+        },
+
+        getOffice365LoginData: function () {
+            return office365LoginData;
+        },
+
+        setOffice365LoginData: function (code, session_state) {
+            office365LoginData.code = code;
+            office365LoginData.session_state = session_state;
         }
     }
 });

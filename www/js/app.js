@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngRoute'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -101,13 +101,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
     })
 
+    .state('loggedin', {
+        url: '/loggedin?code&session_state',
+        templateUrl: 'templates/loggedin.html',
+        controller: 'LoggedInCtrl'
+    })
+
     .state('login', {
         url: '/login',
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
     });
 
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.when('', ['$location', '$window', function ($location, $window) {
+
+        // check if there are any query parameters in the url
+        var absUrl = $location.absUrl();
+        var host1 = location.host;
+
+        var index = absUrl.indexOf(host1) + host1.length + 1;
+
+        var baseUrl = absUrl.substr(0, index);
+        var params = absUrl.substr(index);
+        if (params !== '') {
+            // there are query parameters
+            // change the base url to the login redirect page to restore the angular-based url
+            $window.location.href = baseUrl + '#/loggedin' + params;
+            return true;
+        }
+
+        return false;
+    }])
+
+    // if none of the above states are matched, use this as the fallback
+    .otherwise('/login');
 
 });
